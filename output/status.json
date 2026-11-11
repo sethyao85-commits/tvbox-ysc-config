@@ -1,7 +1,21 @@
 {
-  "updated_at": "2026-11-11 04:43:03",
-  "repo": "Lightconer/tvbox-ysc-config",
+  "updated_at": "2026-11-11 13:43:50",
+  "repo": "sethyao85-commits/tvbox-ysc-config",
   "sources": [
+    {
+      "id": "fantaiying",
+      "name": "饭太硬",
+      "ok": true,
+      "used_url": "http://www.饭太硬.net/tv",
+      "error": null
+    },
+    {
+      "id": "wangerxiao",
+      "name": "王二小",
+      "ok": true,
+      "used_url": "https://9280.kstore.vip/newwex.json",
+      "error": null
+    },
     {
       "id": "feimao",
       "name": "肥猫",
@@ -11,17 +25,10 @@
       "cached": true
     },
     {
-      "id": "fantaiying",
-      "name": "饭太硬",
-      "ok": false,
-      "used_url": null,
-      "error": "HTTPConnectionPool(host='www.xn--sss604efuw.xyz', port=80): Max retries exceeded with url: /tv (Caused by NameResolutionError(\"HTTPConnection(host='www.xn--sss604efuw.xyz', port=80): Failed to resolve 'www.xn--sss604efuw.xyz' ([Errno -2] Name or service not known)\"))"
-    },
-    {
-      "id": "wangerxiao",
-      "name": "王二小",
+      "id": "xiaoma",
+      "name": "小马",
       "ok": true,
-      "used_url": "https://d.kstore.dev/download/9280/wex.json",
+      "used_url": "https://szyyds.cn/tv/x.json",
       "error": null
     },
     {
@@ -32,46 +39,10 @@
       "error": null
     },
     {
-      "id": "xiaoma",
-      "name": "小马",
-      "ok": true,
-      "used_url": "https://szyyds.cn/tv/x.json",
-      "error": null
-    },
-    {
-      "id": "ouge",
-      "name": "讴歌",
-      "ok": true,
-      "used_url": "(缓存)",
-      "error": "HTTPSConnectionPool(host='xn--dkw0c.v.nxog.top', port=443): Max retries exceeded with url: /m/ (Caused by SSLError(SSLError(1, '[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1018)')))",
-      "cached": true
-    },
-    {
-      "id": "4k",
-      "name": "4K小盒子",
-      "ok": true,
-      "used_url": "http://xhztv.top/4k.json",
-      "error": null
-    },
-    {
       "id": "xiaohezi",
       "name": "小盒子单仓",
       "ok": true,
       "used_url": "http://xhztv.top/xhz",
-      "error": null
-    },
-    {
-      "id": "shiguang",
-      "name": "拾光多仓",
-      "ok": true,
-      "used_url": "http://xmbjm.fh4u.org/dc.txt",
-      "error": null
-    },
-    {
-      "id": "tinghao",
-      "name": "挺好分享多仓",
-      "ok": true,
-      "used_url": "http://ztha.top/TVBox/GYCK.json",
       "error": null
     }
   ]

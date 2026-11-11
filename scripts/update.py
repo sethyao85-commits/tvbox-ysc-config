@@ -18,9 +18,11 @@
 用法：
   python scripts/update.py
 """
+import base64
 import datetime
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -71,6 +73,36 @@ def parse_json_lenient(text: str):
             return obj
         except Exception:
             raise
+
+
+# 部分接口把配置藏在一张图片后面：图片数据 + 8 位字母数字 + "**" + base64(配置)
+DISGUISE_MARK = re.compile(r"[A-Za-z0-9]{8}\*\*")
+
+
+def decode_disguised(raw: bytes) -> str:
+    """把接口返回的字节转成配置文本；兼容「伪装成图片的 base64」。"""
+    text = raw.decode("utf-8", errors="ignore")
+    stripped = text.lstrip("\ufeff").strip()
+    if stripped.startswith("{"):
+        return text
+    found = DISGUISE_MARK.search(text)
+    if found:
+        body = text[found.end():].strip()
+        body += "=" * (-len(body) % 4)
+        return base64.b64decode(body).decode("utf-8", errors="ignore")
+    return text
+
+
+def absolutize(data, base_url: str):
+    """把配置里以 ./ 或 ../ 开头的相对地址改成绝对地址。
+    配置转存到本仓库以后，相对地址会指向本仓库里不存在的文件（例如 ./fty.jar）。"""
+    if isinstance(data, dict):
+        return {k: absolutize(v, base_url) for k, v in data.items()}
+    if isinstance(data, list):
+        return [absolutize(v, base_url) for v in data]
+    if isinstance(data, str) and (data.startswith("./") or data.startswith("../")):
+        return urllib.parse.urljoin(base_url, data)
+    return data
 
 
 def idn_encode(url: str) -> str:
@@ -136,10 +168,11 @@ def fetch_config(url: str) -> dict:
                 allow_redirects=True,
             )
             resp.raise_for_status()
-            data = parse_json_lenient(resp.text)
+            data = parse_json_lenient(decode_disguised(resp.content))
             if not is_valid_tvbox_config(data):
                 raise ValueError("返回内容不是 TVBox 配置（缺少 sites/spiders/lives 或 urls 字段）")
-            return data
+            # 以最终地址（跟随跳转之后）为基准，补全相对地址
+            return absolutize(data, resp.url)
         except Exception as e:  # noqa: BLE001
             last_err = e
             text_len = len(getattr(resp, "text", "") or "") if "resp" in locals() else -1
@@ -289,7 +322,8 @@ def main() -> int:
         or os.environ.get("REPO")
         or DEFAULT_REPO
     )
-    raw_base = f"https://gh-proxy.org/https://raw.githubusercontent.com/{repo}/main/output"
+    # 直接用 GitHub raw 地址，不套第三方代理；客户端自己有镜像回退
+    raw_base = f"https://raw.githubusercontent.com/{repo}/main/output"
 
     status = {"updated_at": now_str, "repo": repo, "sources": []}
     subscriptions = []

@@ -3,6 +3,14 @@
 ![配置状态](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FLightconer%2Ftvbox-ysc-config%2Fmain%2Foutput%2Fshield.json)
 ![更新频率](https://img.shields.io/badge/%E6%9B%B4%E6%96%B0-%E6%AF%8F%E5%A4%A9%202%20%E6%AC%A1-blue)
 
+> **本仓库是 [Lightconer/tvbox-ysc-config](https://github.com/Lightconer/tvbox-ysc-config) 的 Fork，供「魔法影视」自用。** 和上游的差别：
+> - 只保留饭太硬、王二小、肥猫、小马、老刘备、小盒子单仓 6 个源（`config/sources.json`）；
+> - 订阅里的地址直接用 GitHub raw，不套 `gh-proxy.org`；
+> - 配置里的相对地址（如 `./fty.jar`）转存时补全为绝对地址；
+> - 能解开「伪装成图片的 base64」配置（饭太硬）。
+>
+> 下面是上游原有的说明，其中的仓库地址和源列表以上游为准。
+
 聚合 **肥猫、饭太硬、王二小、老刘备、小马、讴歌（欧歌）、4K小盒子、小盒子单仓、拾光多仓、挺好分享多仓** 等多个影视仓 / TVBox 单仓配置，通过 **GitHub Actions 定时自动更新**，并把结果直接提交回本仓库，供影视仓、TVBox、OK影视等软件随时拉取最新接口。
 
 > 所有配置均来自互联网公开分享，版权归原作者所有；本仓库仅做聚合与镜像，仅供学习交流，请勿商用。
@@ -12,20 +20,16 @@
 ## 一、源可用性状态
 
 <!-- STATUS_START -->
-> 🔄 最近更新：2026-11-11 04:43:03（北京时间） · 成功 **9/10** 个源
+> 🔄 最近更新：2026-11-11 13:43:50（北京时间） · 成功 **6/6** 个源
 
 | 配置源 | 状态 | 使用地址 |
 | --- | --- | --- |
+| 饭太硬 | ✅ 成功 | `http://www.饭太硬.net/tv` |
+| 王二小 | ✅ 成功 | `https://9280.kstore.vip/newwex.json` |
 | 肥猫 | 📦 缓存 | 上次成功配置（本次更新未抓到，沿用缓存） |
-| 饭太硬 | ❌ 失败 | HTTPConnectionPool(host='www.xn--sss604efuw.xyz', port=80... |
-| 王二小 | ✅ 成功 | `https://d.kstore.dev/download/9280/wex.json` |
-| 老刘备 | ✅ 成功 | `https://raw.liucn.cc/box/m.json` |
 | 小马 | ✅ 成功 | `https://szyyds.cn/tv/x.json` |
-| 讴歌 | 📦 缓存 | 上次成功配置（本次更新未抓到，沿用缓存） |
-| 4K小盒子 | ✅ 成功 | `http://xhztv.top/4k.json` |
+| 老刘备 | ✅ 成功 | `https://raw.liucn.cc/box/m.json` |
 | 小盒子单仓 | ✅ 成功 | `http://xhztv.top/xhz` |
-| 拾光多仓 | ✅ 成功 | `http://xmbjm.fh4u.org/dc.txt` |
-| 挺好分享多仓 | ✅ 成功 | `http://ztha.top/TVBox/GYCK.json` |
 <!-- STATUS_END -->
 
 ## 二、仓库结构
