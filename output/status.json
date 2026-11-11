@@ -1,19 +1,20 @@
 {
-  "updated_at": "2026-11-11 13:43:50",
+  "updated_at": "2026-11-11 13:45:18",
   "repo": "sethyao85-commits/tvbox-ysc-config",
   "sources": [
     {
       "id": "fantaiying",
       "name": "饭太硬",
       "ok": true,
-      "used_url": "http://www.饭太硬.net/tv",
-      "error": null
+      "used_url": "(缓存)",
+      "error": "HTTPConnectionPool(host='www.xn--sss604efuw.xyz', port=80): Max retries exceeded with url: /tv (Caused by NameResolutionError(\"HTTPConnection(host='www.xn--sss604efuw.xyz', port=80): Failed to resolve 'www.xn--sss604efuw.xyz' ([Errno -2] Name or service not known)\"))",
+      "cached": true
     },
     {
       "id": "wangerxiao",
       "name": "王二小",
       "ok": true,
-      "used_url": "https://9280.kstore.vip/newwex.json",
+      "used_url": "https://d.kstore.dev/download/9280/wex.json",
       "error": null
     },
     {
